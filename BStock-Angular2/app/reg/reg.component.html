@@ -1,0 +1,180 @@
+<div class="col-md-6 col-md-offset-3">
+  <div  [hidden]="submitted">
+    <h1>註冊</h1>
+    <form name="form" (ngSubmit)="regForm.form.valid && register()" #regForm="ngForm">
+      <div class="form-group">
+        <label for="account">客戶帳號</label>
+        <input type="text" class="form-control" id="account" required
+               [(ngModel)]="model.account" name="account"
+               #account="ngModel" >
+        <div [hidden]="account.valid || account.pristine"
+             class="alert alert-danger">
+          請填入帳號
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">姓名</label>
+        <input type="text" class="form-control" id="name" required
+               [(ngModel)]="model.name" name="name"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+              class="alert alert-danger">
+          請填入姓名
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="genderInput">性別</label>
+          <div>
+            <select [ngModel]="selectedGender" (ngModelChange)="onChangeGender($event)" name="gender2">
+              <option [ngValue]="g" *ngFor="let g of genders">{{g.gender}}</option>
+            </select>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label for="gender1">性別</label>
+        <input list="gender1" name="gender1" placeholder="男性/女性">
+        <datalist id="gender1">
+          <option value="男性">
+          <option value="女性">
+        </datalist>
+      </div>
+
+      <div class="radio">
+        <label>
+          <input type="radio" name="gender" value="男性" ngModel>
+          男性
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="gender" value="女性" ngModel>
+          女性
+        </label>
+      </div>
+
+      <div class="form-group">
+      <label>出生日期：</label>
+      西元
+      <select size=1 name="year">
+        <option value="1980" selected>1980
+        <option value="1981">1981
+        <option value="1982">1982
+        <option value="1983">1983
+        <option value="1984">1984
+        <option value="1985">1985
+        <option value="1986">1986
+        <option value="1987">1987
+        <option value="1988">1988
+        <option value="1989">1989
+        <option value="1990">1990
+        <option value="1991">1991
+        <option value="1992">1992
+        <option value="1993">1993
+        <option value="1994">1994
+        <option value="1995">1995
+        <option value="1996">1996
+        <option value="1997">1997
+        <option value="1998">1998
+        <option value="1999">1999
+      </select>
+        <input type="number" name="year" value= "1980" step="1">
+        年
+      <select size=1 name="year">
+        <option value="1" selected>1
+        <option value="2">2
+        <option value="3">3
+        <option value="4">4
+        <option value="5">5
+        <option value="6">6
+        <option value="7">7
+        <option value="8">8
+        <option value="9">9
+        <option value="10">10
+        <option value="11">11
+        <option value="12">12
+      </select>
+        月
+      <select size=1 name="year">
+        <option value="1" selected>1
+        <option value="2">2
+        <option value="3">3
+        <option value="4">4
+        <option value="5">5
+        <option value="6">6
+        <option value="7">7
+        <option value="8">8
+        <option value="9">9
+        <option value="10">10
+        <option value="11">11
+        <option value="12">12
+        <option value="13">13
+        <option value="14">14
+        <option value="15">15
+        <option value="16">16
+        <option value="17">17
+        <option value="18">18
+        <option value="19">19
+        <option value="20">20
+        <option value="21">21
+        <option value="22">22
+        <option value="23">23
+        <option value="24">24
+        <option value="25">25
+        <option value="26">26
+        <option value="27">27
+        <option value="28">28
+        <option value="29">29
+        <option value="30">30
+        <option value="31">31
+      </select>
+        日<br>
+      </div>
+
+      <div class="form-group">
+        <label for="password">密碼</label>
+        <input type="password" class="form-control" id="password" required
+               [(ngModel)]="model.password" name="password" validateEqual="passwordre" reverse="true" #password="ngModel" >
+        <div [hidden]="password.valid || password.pristine"
+             class="alert alert-danger">
+          請填入密碼
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label for="passwordre">再次輸入密碼</label>
+          <input type="password" class="form-control" id="passwordre" required
+                 [(ngModel)]="model.passwordre" name="passwordre" validateEqual="password" reverse="false" #passwordre="ngModel">
+          <div [hidden]="passwordre.valid || passwordre.pristine"  class="alert alert-danger">
+             密碼不一致
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email"
+                 [(ngModel)]="model.email" name="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" placeholder="abc@tmu.edu.tw" #email="ngModel">
+          <div [hidden]="email.valid || email.pristine"  class="alert alert-danger">
+             請填入正確的Email
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="tel">電話</label>
+          <input type="text" class="form-control" id="tel"
+                 [(ngModel)]="model.tel" name="tel" placeholder="09xx-xxxxxx" minlength="11" maxlength="11" #tel="ngModel">
+          <div [hidden]="tel.valid || tel.pristine"  class="alert alert-danger">
+              請填入正確的電話
+          </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="loading">註冊</button>
+      <button type="submit" (click)="addPerson(model.account.value, name.value, passowrd.value)" class="btn btn-default">註冊</button>
+      <input type="submit" onclick="alert('確定註冊')" value="送出"><br>
+
+      <a [routerLink]="['/login']" class="btn btn-link">取消</a>
+
+    </form>
+  </div>

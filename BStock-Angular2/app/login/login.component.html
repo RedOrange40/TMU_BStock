@@ -1,0 +1,33 @@
+<div class="col-md-3">
+  <div  [hidden]="submitted">
+    <h1>登入</h1>
+    <form name="form" (ngSubmit)="loginForm.form.valid && login()" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="account">客戶帳號</label>
+        <input type="text" class="form-control" id="account" placeholder="abc" required
+               [(ngModel)]="model.account" name="account"
+               #account="ngModel" >
+        <div [hidden]="account.valid || account.pristine"
+             class="alert alert-danger">
+          Account is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="account">密碼</label>
+        <input type="password" class="form-control" id="password" required
+               [(ngModel)]="model.password" name="password"
+               #password="ngModel" >
+        <div [hidden]="password.valid || password.pristine"
+             class="alert alert-danger">
+          Password is required
+        </div>
+      </div>
+
+      <!--<button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">登入</button>-->
+        <button type="submit" class="btn btn-primary" [disabled]="loading">登入</button>
+      <a [routerLink]="['/reg']" class="btn btn-link">註冊</a>
+
+
+    </form>
+  </div>
